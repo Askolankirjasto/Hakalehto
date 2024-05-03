@@ -136,23 +136,23 @@
 
   @media screen and (max-width: 1800px) {
     .gallery .gallery-image {
-      width: 31%;
+      width: 17%;
     }
   }
 
   @media screen and (max-width: 1485px) {
     .gallery .gallery-image {
-      width: 31%;
+      width: 21%;
     }
   }
 
   @media screen and (max-width: 1040px) {
     .gallery .gallery-image {
-      width: 45%;
+      width: 40%;
     }
   }
 
-  @media screen and (max-width: 689px) {
+  @media screen and (max-width: 697px) {
     .gallery .gallery-image {
       width: 100%;
     }
