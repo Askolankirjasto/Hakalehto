@@ -19,11 +19,9 @@
   
   .gallery {
     display: flow-root;
-    /*flex-flow: column wrap;*/
-    align-content: space-between;
     overflow: hidden;
-    /*height: 210vw;*/
   }
+
   .gallery .gallery-image {
     width: 23%;
   }
@@ -31,18 +29,7 @@
     opacity: 1;
     z-index: 3;
   }
-  .gallery .gallery-image:nth-child(4n+1) {
-    order: 1;
-  }
-  .gallery .gallery-image:nth-child(4n+2) {
-    order: 2;
-  }
-  .gallery .gallery-image:nth-child(4n+3) {
-    order: 3;
-  }
-  .gallery .gallery-image:nth-child(4n) {
-    order: 4;
-  }
+
   .gallery::before, .gallery::after {
     content: "";
     flex-basis: 100%;
