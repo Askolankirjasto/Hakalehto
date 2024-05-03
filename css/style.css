@@ -133,3 +133,27 @@
     opacity: 1;
     transition-duration: 0.3s;
   }
+
+  @media screen and (max-width: 1800px) {
+    .gallery .gallery-image {
+      width: 31%;
+    }
+  }
+
+  @media screen and (max-width: 1485px) {
+    .gallery .gallery-image {
+      width: 31%;
+    }
+  }
+
+  @media screen and (max-width: 1040px) {
+    .gallery .gallery-image {
+      width: 45%;
+    }
+  }
+
+  @media screen and (max-width: 689px) {
+    .gallery .gallery-image {
+      width: 100%;
+    }
+  }
