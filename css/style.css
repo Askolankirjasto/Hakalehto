@@ -9,6 +9,7 @@
     width: 100%;
     margin: 0;
     padding: 0;
+    background: #aaa4a4;
   }
   
   img {
@@ -20,6 +21,7 @@
   .gallery {
     display: flow-root;
     overflow: hidden;
+    margin-left: 1.5em;
   }
 
   .gallery .gallery-image {
@@ -110,9 +112,7 @@
   }
   
   /* ---------------------------------- */
-  body {
-    background: black;
-  }
+ 
   
   #app {
     pointer-events: none;
@@ -138,6 +138,7 @@
     .gallery .gallery-image {
       width: 17%;
     }
+
   }
 
   @media screen and (max-width: 1485px) {
@@ -150,10 +151,20 @@
     .gallery .gallery-image {
       width: 40%;
     }
+    .gallery {
+      margin-left: 4em;
+    }
+    #app:hover .gallery .gallery-image {
+      opacity: 0.7;
+    }
   }
 
   @media screen and (max-width: 697px) {
     .gallery .gallery-image {
       width: 100%;
+    }
+    .gallery {
+      margin-right: 1em;
+      margin-left: 0em;
     }
   }
