@@ -1,73 +1,111 @@
 $(document).ready(function() {
+  const elApp = document.querySelector("#app");
+  const elImages = Array.from(document.querySelectorAll(".gallery-image"));
+  const elDetail = document.querySelector(".detail");
+  const modal = document.getElementById("imageModal");
+  const closeBtn = document.querySelector(".close");
+  const submitFormBtn = document.getElementById("submitForm");
 
-const elApp = document.querySelector("#app");
+  function flipImages(firstEl, lastEl, change) {
+    const firstRect = firstEl.getBoundingClientRect();
+    const lastRect = lastEl.getBoundingClientRect();
 
-const elImages = Array.from(document.querySelectorAll(".gallery-image"));
+    const deltaX = firstRect.left - lastRect.left;
+    const deltaY = firstRect.top - lastRect.top;
+    const deltaW = firstRect.width / lastRect.width;
+    const deltaH = firstRect.height / lastRect.height;
 
-const elDetail = document.querySelector(".detail");
+    change();
+    lastEl.parentElement.dataset.flipping = true;
 
-function flipImages(firstEl, lastEl, change) {
-  const firstRect = firstEl.getBoundingClientRect();
+    const animation = lastEl.animate([
+      {
+        transform: `translateX(${deltaX}px) translateY(${deltaY}px) scaleX(${deltaW}) scaleY(${deltaH})`
+      },
+      {
+        transform: 'none'
+      }
+    ], {
+      duration: 600,
+      easing: 'cubic-bezier(.2, 0, .3, 1)'
+    });
 
-  const lastRect = lastEl.getBoundingClientRect();
-
-  // INVERT
-  const deltaX = firstRect.left - lastRect.left;
-  const deltaY = firstRect.top - lastRect.top;
-  const deltaW = firstRect.width / lastRect.width;
-  const deltaH = firstRect.height / lastRect.height;
-
-  change();
-  lastEl.parentElement.dataset.flipping = true;
-
-  const animation = lastEl.animate([
-    {
-      transform: `translateX(${deltaX}px) translateY(${deltaY}px) scaleX(${deltaW}) scaleY(${deltaH})`
-    },
-    {
-      transform: 'none'
-    }
-  ], {
-    duration: 600, // milliseconds
-    easing: 'cubic-bezier(.2, 0, .3, 1)'
-  });
-
-  animation.onfinish = () => {
-    delete lastEl.parentElement.dataset.flipping;
+    animation.onfinish = () => {
+      delete lastEl.parentElement.dataset.flipping;
+    };
   }
 
-}
-
-elImages.forEach(figure => {
-
+  elImages.forEach(figure => {
   figure.addEventListener("click", () => {
     const elImage = figure.querySelector('img');
+    const figcaption = figure.querySelector('figcaption').textContent;
 
     elDetail.innerHTML = "";
-
     const elClone = figure.cloneNode(true);
     elDetail.appendChild(elClone);
 
     const elCloneImage = elClone.querySelector('img');
 
-    flipImages(elImage, elCloneImage, ()=>{
-      elApp.dataset.state="detail";
+    flipImages(elImage, elCloneImage, () => {
+      elApp.dataset.state = "detail";
     });
 
-    function revert(){
+    // Add a close button to the detail view
+    const closeDetailBtn = document.createElement('span');
+    closeDetailBtn.className = 'detail-close';
+    closeDetailBtn.innerHTML = '&times;';
+    elDetail.appendChild(closeDetailBtn);
 
-      flipImages(elCloneImage, elImage, ()=>{
-        elApp.dataset.state="gallery";
-        elDetail.removeEventListener('click',revert);
+    // Add a button to the detail view
+    const moreInfoBtn = document.createElement('button');
+    moreInfoBtn.id = 'moreInfoBtn';
+    moreInfoBtn.textContent = 'Lähetä';
+    elDetail.querySelector('.gallery-image').appendChild(moreInfoBtn);
+
+    // Clear the textarea when a new image is opened
+    document.getElementById('imageInfo').value = '';
+
+    closeDetailBtn.addEventListener('click', revert);
+    moreInfoBtn.addEventListener('click', (event) => {
+      event.stopPropagation();
+      modal.style.display = "block";
+      document.getElementById('imageObject').value = figcaption;
+    });
+
+    function revert() {
+      flipImages(elCloneImage, elImage, () => {
+        elApp.dataset.state = "gallery";
+        elDetail.removeEventListener('click', revert);
       });
-
+      closeDetailBtn.remove();
+      moreInfoBtn.remove();
     }
 
-    elDetail.addEventListener('click',revert);
-
+    elDetail.addEventListener('click', revert);
   });
 });
 
+  closeBtn.onclick = function() {
+    modal.style.display = "none";
+  };
+
+submitFormBtn.onclick = function() {
+    const imageObject = document.getElementById("imageObject").value;
+    const imageInfo = document.getElementById("imageInfo").value;
+
+    // Construct the mailto link with the desired subject and body
+    const subject = encodeURIComponent(`Hakalehto kuva numero ${imageObject}`);
+    const body = encodeURIComponent(`${imageInfo}\n`);
+    const mailtoLink = `mailto:kirjasto@askola.com?subject=${subject}&body=${body}`;
+
+    // Open the mailto link
+    window.location.href = mailtoLink;
+};
 
 
-})
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+});
