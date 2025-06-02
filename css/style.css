@@ -119,6 +119,7 @@
   cursor: pointer;
   z-index: 3;
   width: 200px;
+  height: 150px;
 }
 
 .detail-close {
