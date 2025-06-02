@@ -98,7 +98,7 @@ $(document).ready(function() {
     // Construct the mailto link with the desired subject and body
     const subject = encodeURIComponent(`Hakalehto kuva numero ${imageObject}`);
     const body = encodeURIComponent(`${imageInfo}\n`);
-    const mailtoLink = `mailto:kirjasto@askola.com?subject=${subject}&body=${body}`;
+    const mailtoLink = `mailto:kirjasto@askola.fi?subject=${subject}&body=${body}`;
 
     console.log("Submitting form with mailto:", mailtoLink); // Debugging log
 
