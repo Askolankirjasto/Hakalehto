@@ -138,15 +138,20 @@
 
 
 #moreInfoBtn {
-  margin-top: 20px; /* Space between the image and the button */
+  width: 100%; /* Make the button full width of its container */
+  padding: 15px; /* Increase padding to make the button taller */
   background-color: #1d95b3;
   color: white;
-  padding: 10px 15px;
   border: none;
   cursor: pointer;
-  z-index: 3;
-  width: 200px;
+  font-size: 16px; /* Adjust font size as needed */
+  margin-top: 10px; /* Space between the image and the button */
 }
+
+#moreInfoBtn:hover {
+  background-color: #0f4b5a;
+}
+
 
 #moreInfoBtn:hover {
   background-color: #0f4b5a;
@@ -281,12 +286,24 @@
 
 .modal-content {
   background-color: #fefefe;
-  margin: 10% auto;
+  margin: 5% auto;
   padding: 20px;
-  width: 80%;
+  width: 90%; /* Adjust width for mobile */
   max-width: 500px;
+  height: auto; /* Adjust height as needed */
+  max-height: 80vh; /* Use viewport height to make it responsive */
   text-align: center;
+  overflow-y: auto; /* Enable vertical scrolling if content overflows */
 }
+
+#infoForm textarea {
+  width: 100%;
+  height: 150px; /* Increase the height of the textarea */
+  padding: 10px;
+  margin: 10px 0;
+  box-sizing: border-box; /* Ensure padding is included in the width and height */
+}
+
 
 .close {
   position: absolute;
