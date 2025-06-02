@@ -87,9 +87,7 @@ $(document).ready(function() {
     });
   });
 
-  closeBtn.onclick = function() {
-    modal.style.display = "none";
-  };
+
 
  submitFormBtn.addEventListener('click', function() {
     const imageObject = document.getElementById("imageObject").value;
