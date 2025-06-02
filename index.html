@@ -14,8 +14,8 @@
 </head>
 <body>
   <div class="header">
-    <h1>Header</h1>
-    <p>My supercool header</p>
+    <h1>Naapureita ja kyläläisiä,<br /> rovasti Lauri Hakalehdon lyijykynäpiirroksia</h1>
+    <!-- <p>My supercool header</p> -->
   </div> 
 
     <div id="app" data-state="gallery">
@@ -266,3 +266,17 @@
       </div>
 </body>
 </html>
+
+
+<div id="imageModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div id="infoForm">
+      <form id="userInfoForm">
+        <input type="hidden" id="imageObject" name="Kuvan numero:">
+        <textarea id="imageInfo" name="imageInfo" placeholder="Kirjoita lisää tietoa tästä kuvasta..." required></textarea>
+        <button type="button" id="submitForm">Lähetä</button>
+      </form>
+    </div>
+  </div>
+</div>
