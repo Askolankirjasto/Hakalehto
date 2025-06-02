@@ -59,7 +59,7 @@ $(document).ready(function() {
     // Add a button to the detail view
     const moreInfoBtn = document.createElement('button');
     moreInfoBtn.id = 'moreInfoBtn';
-    moreInfoBtn.textContent = 'Lähetä';
+    moreInfoBtn.textContent = 'Lähetä lisätietoja';
     elDetail.querySelector('.gallery-image').appendChild(moreInfoBtn);
 
     // Clear the textarea when a new image is opened
