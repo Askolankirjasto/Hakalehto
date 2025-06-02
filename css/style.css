@@ -110,7 +110,16 @@
   max-height: 80vh; /* Adjust as needed */
 }
 
-
+#moreInfoBtn {
+  margin-top: 20px; /* Space between the image and the button */
+  background-color: #1d95b3;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  z-index: 3;
+  width: 200px;
+}
 
 .detail-close {
   position: absolute;
@@ -129,17 +138,15 @@
 
 
 #moreInfoBtn {
-  width: 100%;
-  padding: 31px;
-    padding-top: 31px;
+  width: 100%; /* Make the button full width of its container */
+  padding: 15px; /* Increase padding to make the button taller */
   background-color: #1d95b3;
   color: white;
   border: none;
   cursor: pointer;
-  font-size: 41px;
-  margin-top: 5px;
-  height: 150px;
-  padding-top: 30px;
+  font-size: 16px; /* Adjust font size as needed */
+  margin-top: 10px; /* Space between the image and the button */
+}
 
 #moreInfoBtn:hover {
   background-color: #0f4b5a;
