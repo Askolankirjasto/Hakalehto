@@ -270,6 +270,11 @@
    .header {
     hyphens: auto;
   }
+    #moreInfoBtn {
+  
+  padding: 35px; /* Increase padding to make the button taller */
+  font-size: 32px; /* Adjust font size as needed */
+}
 }
 
 /*modal---------------------------------*/
