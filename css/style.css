@@ -139,15 +139,17 @@
 
 
 #moreInfoBtn {
-  width: 100%; /* Make the button full width of its container */
-  padding: 15px; /* Increase padding to make the button taller */
+  width: 100%;
+  padding: 31px;
+    padding-top: 31px;
   background-color: #1d95b3;
   color: white;
   border: none;
   cursor: pointer;
-  font-size: 16px; /* Adjust font size as needed */
-  margin-top: 10px; /* Space between the image and the button */
-}
+  font-size: 41px;
+  margin-top: 5px;
+  height: 150px;
+  padding-top: 30px;
 
 #moreInfoBtn:hover {
   background-color: #0f4b5a;
