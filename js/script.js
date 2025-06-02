@@ -36,72 +36,78 @@ $(document).ready(function() {
   }
 
   elImages.forEach(figure => {
-  figure.addEventListener("click", () => {
-    const elImage = figure.querySelector('img');
-    const figcaption = figure.querySelector('figcaption').textContent;
+    figure.addEventListener("click", () => {
+      const elImage = figure.querySelector('img');
+      const figcaption = figure.querySelector('figcaption').textContent;
 
-    elDetail.innerHTML = "";
-    const elClone = figure.cloneNode(true);
-    elDetail.appendChild(elClone);
+      elDetail.innerHTML = "";
+      const elClone = figure.cloneNode(true);
+      elDetail.appendChild(elClone);
 
-    const elCloneImage = elClone.querySelector('img');
+      const elCloneImage = elClone.querySelector('img');
 
-    flipImages(elImage, elCloneImage, () => {
-      elApp.dataset.state = "detail";
-    });
-
-    // Add a close button to the detail view
-    const closeDetailBtn = document.createElement('span');
-    closeDetailBtn.className = 'detail-close';
-    closeDetailBtn.innerHTML = '&times;';
-    elDetail.appendChild(closeDetailBtn);
-
-    // Add a button to the detail view
-    const moreInfoBtn = document.createElement('button');
-    moreInfoBtn.id = 'moreInfoBtn';
-    moreInfoBtn.textContent = 'Lähetä lisätietoja';
-    elDetail.querySelector('.gallery-image').appendChild(moreInfoBtn);
-
-    // Clear the textarea when a new image is opened
-    document.getElementById('imageInfo').value = '';
-
-    closeDetailBtn.addEventListener('click', revert);
-    moreInfoBtn.addEventListener('click', (event) => {
-      event.stopPropagation();
-      modal.style.display = "block";
-      document.getElementById('imageObject').value = figcaption;
-    });
-
-    function revert() {
-      flipImages(elCloneImage, elImage, () => {
-        elApp.dataset.state = "gallery";
-        elDetail.removeEventListener('click', revert);
+      flipImages(elImage, elCloneImage, () => {
+        elApp.dataset.state = "detail";
       });
-      closeDetailBtn.remove();
-      moreInfoBtn.remove();
-    }
 
-    elDetail.addEventListener('click', revert);
+      // Add a close button to the detail view
+      const closeDetailBtn = document.createElement('span');
+      closeDetailBtn.className = 'detail-close';
+      closeDetailBtn.innerHTML = '&times;';
+      elDetail.appendChild(closeDetailBtn);
+
+      // Add a button to the detail view
+      const moreInfoBtn = document.createElement('button');
+      moreInfoBtn.id = 'moreInfoBtn';
+      moreInfoBtn.textContent = 'Lähetä lisätietoja';
+      elDetail.querySelector('.gallery-image').appendChild(moreInfoBtn);
+
+      // Clear the textarea when a new image is opened
+      document.getElementById('imageInfo').value = '';
+
+      closeDetailBtn.addEventListener('click', revert);
+      moreInfoBtn.addEventListener('click', handleMoreInfoClick);
+
+      function handleMoreInfoClick(event) {
+        event.stopPropagation();
+        modal.style.display = "block";
+        document.getElementById('imageObject').value = figcaption;
+      }
+
+      function revert() {
+        flipImages(elCloneImage, elImage, () => {
+          elApp.dataset.state = "gallery";
+          elDetail.removeEventListener('click', revert);
+        });
+        closeDetailBtn.remove();
+        moreInfoBtn.remove();
+      }
+
+      elDetail.addEventListener('click', revert);
+    });
   });
-});
 
   closeBtn.onclick = function() {
     modal.style.display = "none";
   };
 
-submitFormBtn.onclick = function() {
+  submitFormBtn.addEventListener('click', function() {
     const imageObject = document.getElementById("imageObject").value;
     const imageInfo = document.getElementById("imageInfo").value;
 
     // Construct the mailto link with the desired subject and body
     const subject = encodeURIComponent(`Hakalehto kuva numero ${imageObject}`);
-    const body = encodeURIComponent(`${imageInfo}\n`);
-    const mailtoLink = `mailto:kirjasto@askola.com?subject=${subject}&body=${body}`;
+    const body = encodeURIComponent(`Image Info: ${imageInfo}\n`);
+    const mailtoLink = `mailto:your-email@example.com?subject=${subject}&body=${body}`;
+
+    console.log("Submitting form with mailto:", mailtoLink); // Debugging log
 
     // Open the mailto link
     window.location.href = mailtoLink;
-};
 
+    // Close the modal
+    modal.style.display = "none";
+  });
 
   window.onclick = function(event) {
     if (event.target == modal) {
