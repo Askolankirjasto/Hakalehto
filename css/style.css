@@ -110,17 +110,7 @@
   max-height: 80vh; /* Adjust as needed */
 }
 
-#moreInfoBtn {
-  margin-top: 20px; /* Space between the image and the button */
-  background-color: #1d95b3;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  cursor: pointer;
-  z-index: 3;
-  width: 200px;
-  height: 150px;
-}
+
 
 .detail-close {
   position: absolute;
