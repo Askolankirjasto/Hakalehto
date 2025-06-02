@@ -91,7 +91,7 @@ $(document).ready(function() {
     modal.style.display = "none";
   };
 
-  submitFormBtn.addEventListener('click', function() {
+ submitFormBtn.addEventListener('click', function() {
     const imageObject = document.getElementById("imageObject").value;
     const imageInfo = document.getElementById("imageInfo").value;
 
@@ -107,7 +107,8 @@ $(document).ready(function() {
 
     // Close the modal
     modal.style.display = "none";
-  });
+});
+
 
   window.onclick = function(event) {
     if (event.target == modal) {
